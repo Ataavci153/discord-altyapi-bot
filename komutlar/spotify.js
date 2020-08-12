@@ -1,48 +1,50 @@
-const Discord = require ('discord.js');
-module.exports.run = async (bot, message, args) => {
-    var user = message.mentions.users.first() || message.author;
-    if (!args[0]) return message.channel.send("**Şarkı bilgisini bulmam için Spotify'dan şarkı dinleyen birisini etiketlemen lazım.**")
-  
-    if (user.presence.game.name === 'Spotify' && user.presence.game.type === 2) {
-        try {
-            var trackImg = user.presence.game.assets.largeImageURL;
-            var trackUrl = `https://open.spotify.com/track/${user.presence.game.syncID}`;
-            var trackName = user.presence.game.details;
-            var trackAlbum = user.presence.game.assets.largeText;
-            var trackAuthor = user.presence.game.state;
+const Discord = required ('discord.js');
 
-            const embed = new Discord.RichEmbed()
-                .setAuthor('Spotify Şarkı Bilgisi', 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2000px-Spotify_logo_without_text.svg.png')
-                .setColor(0xdb954)
-                .setThumbnail(trackImg)
-                .setFooter(`Cabbar BOT Spotify Sistemi ${message.author.username} tarafından istendi.`, "https://cdn.discordapp.com/emojis/515260605347659777.png?v=1")
-                .setDescription(`
-\ **Spotify**'da dinlediği şarkı;  \**${trackName}**\n
-\ **Spotify**'da dinlediği albüm;  \**${trackAlbum}**\n
-\ **Spotify**'da dinlediği sanatçı;  \**${trackAuthor}**\n
+export.run = (müşteri, mesaj, parametreler) => {
+  const embed = new Discord.RichEmbed ()
+ .setAuthor (`Yardım`, client.user.avatarURL)
+  .setColor ( "mavi")
+  .addField ("Komut yüklendi", `
+** blue_small_square: | yasakla: Etiketlediğiniz kişiyi evrudan banlar. (Botlar da çalışmaz.)
+: blue_small_square: | bjk: Profil resminizin bjk versionunu atar. (Özelden çalışmaz.)
+: blue_small_square: | düello: Etiket türleri ile düelloya girersiniz.
+: blue_small_square: | fb: Profil resminizin fb versionunu atar. (Özelden çalışmaz.)
+: blue_small_square: | gs: Profil resminizin gs versionunu atar. (Özelden çalışmaz.)
+: blue_small_square: | havadurumu: Belirlediğiniz şehirin hava durumunu gösterir.
+: blue_small_square: | servericon: Sunucunun resmini gösterir.
+: blue_small_square: | istatistik: Botun istatistiklerini gösterir.
+: blue_small_square: | A! Oyun-ara: Aramak istediğiniz oyunu arar.
+: blue_small_square: | rastgeleşifre: Bot size şifre şifre atar. (Öylesine. XD)
+: blue_small_square: | reboot: Botu yeniden başlatır. (Tehlikeli).
+: blue_small_square: | reklam-taraması: Kullanıcıların isimlerinde veya durumlarında reklam içeren kelimeler var mı, yok mu tarar.
+: blue_small_square: | youtube: Yazdığınız bir YouTube kanalının linkini hem özelden, hemde sunucuda atar.
+: blue_small_square: | Sunucunuzu: Sunucunuzu bu botun destek sunucusundaki sunucu-tanıtına atar sunucunuzu.
+: blue_small_square: | sunubilgi: Bulunduğunuz sunucu hakkında bilgi verir.
+: blue_small_square: | dürbün2: Sunucunuzu sıfırlar ve tekrardan botun ayarlayarak gerekli rolleri, kanalları, kategorileri oluşturarak sunucu kurar.
+: blue_small_square: | israf: Wasredlenirsiniz.
+: blue_small_square: | yaz: Bota istediğin incelendi.
+: blue_small_square: | bulanık: Avatarını bulanık bir şekilde gösterir.
+: blue_small_square: | Önek: A! **
+
+
 `)
-                .addField('Spotify\'da Dinlediği Şarkı Linki;', `**[${trackUrl}](${trackUrl})**`, false);
-                
-            return message.channel.send(embed);
+.setFooter (`$ {message.author.username} tarafından istendi.`, message.author.avatarURL)
+  .setThumbnail (client.user.avatarURL)
+  .setTimestamp ()
 
-        } catch (error) {
-            return message.channel.send(` **${user.tag}** kullanıcısı şuanda **Spotify**<:spotify:515260605347659777>'dan şarkı dinlemiyor.`);
-        }
 
-    } else {
-        return message.channel.send(`**${user.tag}** kullanıcısı şuanda Discord'una **Spotify**<:spotify:515260605347659777>'ı eklememiş`);
-    }
+  return message.channel.sendEmbed (embed);
 };
 
-exports.conf = {
-  enabled: true,
+export.conf = {
+  etkin: doğru,
   guildOnly: false,
-  aliases: ['spo', 'spoti', 'soti', 'spotif', 'spotifyy'],
+  takma adlar: ["y"],
   permLevel: 0
 };
 
-exports.help = {
-  name: 'spotify',
-  description: '',
-  usage: 'spotify'
+export.help = {
+  isim: 'yardım',
+  açıklama: '',
+  kullanım: 'yardım'
 };
