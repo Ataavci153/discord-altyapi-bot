@@ -72,5 +72,5 @@ exports.conf = {
 exports.help = {
 	name: 'sunucu',
 	description: 'Bulunduğun sunucu hakkında bilgi verir.',
-	usage: 'sunucu'
+	usage: 'sunucubilgi'
 }
